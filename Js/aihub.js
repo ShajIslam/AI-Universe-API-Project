@@ -32,12 +32,26 @@ const displayCards = (cards)=>{
                  
                   <div class="card-actions flex justify-center items-center gap-32">
                     <input type="date" name="" id="">
-                    <button class="btn rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick ="showDetails('${card.id}');" class="btn rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>
         `
         cardContainer.appendChild(div);
     })
+}
+
+const showDetails = async (id)=>{
+    const response = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`);
+    const data = await response.json();
+    console.log(data.data);
+    modalShow();
+
+}
+
+
+const modalShow= ()=>{
+    show_modal.showModal();
+
 }
 
 loadData();
